@@ -140,7 +140,9 @@ public class MyString {
      */
     public static String spacedString(String str) {
         String spacedString = "";
-
+        if (str == "") {
+            return str;
+        }
         for (int i = 0; i < str.length() - 1; i++) {
             char c = str.charAt(i);
 

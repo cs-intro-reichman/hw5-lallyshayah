@@ -69,10 +69,9 @@ public class Scrabble {
 	public static int wordScore(String word) {
 		int score = 0;
 
-		if (isWordInDictionary(word) == true) {
 			for (int i = 0; i < word.length(); i++) {
 				char curLetter = word.charAt(i);
-				int index = (int) curLetter - 'a';
+				int index = (int) curLetter - (int) 'a';
 
 				int letterScore = SCRABBLE_LETTER_VALUES[index];
 				score = score + letterScore;
@@ -89,7 +88,6 @@ public class Scrabble {
 				score = score + 1000;
 			}
 
-		}
 		return score;
 
 	}
@@ -130,11 +128,14 @@ public class Scrabble {
 			if (input.equals(".")) {
 				break;
 			}
-
 			else {
+				if(MyString.subsetOf(input,hand) == false){
+					System.out.println("Invalid word. Try again.");
+					continue;
+				}
 				if (isWordInDictionary(input) == true) {
 					score = score + wordScore(input);
-					System.out.println(input + " earned " + wordScore(input) + " points. Score: " + score + " points;");
+					System.out.println(input + " earned " + wordScore(input) + " points. Score: " + score + " points;\n");
 					System.out.println();
 					hand = MyString.remove(hand, input);
 				} else {
