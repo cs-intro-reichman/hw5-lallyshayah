@@ -187,7 +187,7 @@ public class Scrabble {
 		// testBuildingTheDictionary();
 		// testScrabbleScore();
 		// testCreateHands();
-		// testPlayHands();
+		//testPlayHands();
 		playGame();
 	}
 

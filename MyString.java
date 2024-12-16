@@ -63,9 +63,7 @@ public class MyString {
      * @return true is str1 is a subset of str2, false otherwise
      */
     public static boolean subsetOf(String str1, String str2) {
-
         // edge cases
-
         if (str1.length() > str2.length()) {
             return false;
         }
@@ -73,60 +71,15 @@ public class MyString {
         if (str1.length() == 0) {
             return true;
         }
-
-        // arrays that each index of them represents number of occurrences of all
-        // letters in str1 and str2.
-
-        int[] countCharStr1Arr = new int[52];
-        int[] countCharStr2Arr = new int[52];
-
-        for (int i = 0; i < str1.length(); i++) {
-            int asciiValue = (int) str1.charAt(i);
-
-            if (asciiValue <= 90)
-                countCharStr1Arr[asciiValue - 65]++;
-
-            if (asciiValue >= 97)
-                countCharStr1Arr[asciiValue - 71]++;
-        }
-
-        for (int i = 0; i < str2.length(); i++) {
-            int asciiValue = (int) str2.charAt(i);
-
-            if (asciiValue <= 90)
-                countCharStr2Arr[asciiValue - 65]++;
-
-            if (asciiValue >= 97)
-                countCharStr2Arr[asciiValue - 71]++;
-        }
-
-        // this loop checks if Number of occurrences of all letters in str1 is less or
-        // equal to number of occurrences in str2.
-        // it's important for understanding if str1 is a subsetOf str2.
-
-        boolean IsNumOfOccurrencesLessOrEqual = true;
-
-        for (int i = 0; i < 52; i++) {
-            if (countCharStr1Arr[i] > countCharStr2Arr[i])
-                IsNumOfOccurrencesLessOrEqual = false;
-        }
-
-        // final solution
-
-        int count = 0;
-
-        for (int i = 0; i < str1.length(); i++) {
-            for (int j = 0; j < str2.length(); j++) {
-                if (str2.charAt(j) == str1.charAt(i))
-                    count++;
+        int instring = 0;
+        for(int i = 0; i < str1.length(); i ++) {
+            instring = str2.indexOf(str1.charAt(i));
+            if (instring == -1) {
+                return false;
             }
+            str2 = str2.substring(0, instring) + str2.substring(instring+1);
         }
-
-        if (count == str1.length() && IsNumOfOccurrencesLessOrEqual == true)
-            return true;
-
-        else
-            return false;
+        return true;
     }
 
     /**
